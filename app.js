@@ -1,11 +1,28 @@
 const columns = document.querySelectorAll('.column');
 
 document.addEventListener('keydown', event => {
-   event.preventDefault();
-   if (event.code === 'Space') setRandomColors(columns);
+  
+   if (event.code === 'Space') {
+      event.preventDefault();
+      setRandomColors(columns);
+   }
+   
+});
+
+
+/* Mobile events */
+
+document.addEventListener('touchstart', event => {
+   const columnButton = event.target.closest('.column__button');
+   const columnTitle = event.target.closest('.column__title');
+
+   if (columnButton || columnTitle) return;
+
+   if (event) setRandomColors(columns);
 
 });
 
+/* ------------ */
 
 document.addEventListener('click', event => {
    const columnButton = event.target.closest('.column__button');
