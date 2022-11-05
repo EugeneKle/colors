@@ -1,0 +1,45 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+/* CSS rules for font - font-family: 'Roboto', sans-serif;*/
+body {
+   display: flex;
+   height: 100vh;
+}
+
+.column {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
+}
+.column h2 {
+   padding: 10px;
+   color: #fff;
+   border-radius: 10px;
+   transition: background 0.3;
+}
+.column h2:hover {
+   background: rgba(0,0,0,0.1);
+   cursor: pointer;
+}
+.column__title {
+}
+.column__button {
+   border: none;
+   background: transparent;
+   font-size: 1.5rem;
+   color: #fff;
+   border-radius: 10px;
+   padding: 10px;
+   transition: background 0.3;
+   outline: none;
+
+}
+.column__button:hover {
+   background: rgba(0,0,0,0.1);
+   cursor: pointer;
+}
