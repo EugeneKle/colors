@@ -1,58 +1,51 @@
-const columns = document.querySelectorAll('.column');
-
 document.addEventListener('keydown', event => {
-  
+
    if (event.code === 'Space') {
       event.preventDefault();
-      setRandomColors(columns);
+
+      setRandomColors();
    }
-   
-});
-
-
-/* Mobile events */
-
-document.addEventListener('touchstart', event => {
-   const columnButton = event.target.closest('.column__button');
-   const columnTitle = event.target.closest('.column__title');
-
-   if (columnButton || columnTitle) return;
-
-   if (event) setRandomColors(columns);
 
 });
 
-/* ------------ */
 
 document.addEventListener('click', event => {
-   const columnButton = event.target.closest('.column__button');
+   const lockButton = event.target.closest('[data-type="lock"]');
+   const addButton = event.target.closest('[data-type="add"]');
    const columnTitle = event.target.closest('.column__title');
 
-   if (columnButton) {
-      columnButton.firstElementChild.classList.toggle('fa-lock-open');
-      columnButton.firstElementChild.classList.toggle('fa-lock');
+   if (lockButton) {
+      lockButton.firstElementChild.classList.toggle('fa-lock-open');
+      lockButton.firstElementChild.classList.toggle('fa-lock');
+
+   } else if (addButton) {
+      addNewColumn();
 
    } else if (columnTitle) {
-      copyToClickboard (event.target.textContent) 
+      copyToClickboard(event.target.textContent)
    }
 });
 
 
-function setRandomColors(columns) {
+function setRandomColors() {
+
+   let columns = document.querySelectorAll('.column');
+
    columns.forEach(column => {
 
       const color = chroma.random();
       const columnTitle = column.querySelector('.column__title');
-      const columnButton = column.querySelector('.column__button');
+      const columnButtons = column.querySelectorAll('.column__button');
 
-      const isLocked = columnButton.firstElementChild.classList.contains('fa-lock');
+
+      const isLocked = columnButtons[0].firstElementChild.classList.contains('fa-lock');
 
       if (isLocked) return;
       columnTitle.textContent = color;
       column.style.background = color;
 
       setTextColor(columnTitle, color);
-      setTextColor(columnButton, color);
+      columnButtons.forEach(button => setTextColor(button, color));
 
    });
 }
@@ -66,9 +59,26 @@ function setTextColor(text, color) {
 }
 
 
-function copyToClickboard (text) {
+function copyToClickboard(text) {
    return navigator.clipboard.writeText(text);
 }
 
 
-setRandomColors(columns);
+function addNewColumn() {
+   const color = chroma.random();
+   document.body.insertAdjacentHTML('beforeend', `
+      <div class="column" style="background-color: ${color};">
+      <h2 class="column__title">${color}</h2>
+      <div class="column__buttons">
+         <button data-type="lock" class="column__button">
+            <i class="fa-solid fa-lock-open"></i>
+         </button>
+         <button data-type="add" class="column__button">
+            <i class="fa-solid fa-plus"></i>
+         </button>
+      </div>
+   </div>
+      `);
+}
+
+setRandomColors();
