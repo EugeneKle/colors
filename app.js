@@ -56,8 +56,7 @@ function setRandomColors() {
       const columnTitle = column.querySelector('.column__title');
       const columnButtons = column.querySelectorAll('.column__button');
 
-
-      const isLocked = columnButtons[1].firstElementChild.classList.contains('fa-lock');
+      const isLocked = columnButtons[0].firstElementChild.classList.contains('fa-lock');
 
       if (isLocked) return;
       columnTitle.textContent = color;
@@ -87,21 +86,23 @@ function addNewColumn() {
    const color = chroma.random();
    const luminance = chroma(color).luminance();
 
+   const textColor = luminance > 0.5 ? 'black' : 'white';
+
    document.body.insertAdjacentHTML('beforeend', `
    <div class="column" style="background-color: ${color};">
-      <h2 class="column__title" style="color:${luminance > 0.5 ? 'black' : 'white'}">${color}</h2>
+      <h2 class="column__title" style="color:${textColor};">${color}</h2>
       <div class="column__buttons">
-         <button data-type="move" class="column__button handle">
+         <button data-type="move" class="column__button handle" style="color:${textColor};">
             <i class="fa-solid fa-maximize"></i>
          </button>
-         <button data-type="lock" class="column__button">
-            <i class="fa-solid fa-lock-open" style="color:${luminance > 0.5 ? 'black' : 'white'}"></i>
+         <button data-type="lock" class="column__button" style="color:${textColor};">
+            <i class="fa-solid fa-lock-open"></i>
          </button>
-         <button data-type="add" class="column__button">
-            <i class="fa-solid fa-plus" style="color:${luminance > 0.5 ? 'black' : 'white'}"></i>
+         <button data-type="add" class="column__button" style="color:${textColor};">
+            <i class="fa-solid fa-plus"></i>
          </button>
-         <button data-type="remove" class="column__button">
-            <i class="fa-solid fa-minus" style="color:${luminance > 0.5 ? 'black' : 'white'}"></i>
+         <button data-type="remove" class="column__button style="color:${textColor};">
+            <i class="fa-solid fa-minus"></i>
          </button>
       </div>
    </div>
