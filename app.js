@@ -12,9 +12,10 @@ document.addEventListener('keydown', event => {
 document.addEventListener('touchstart', event => {
    const lockButton = event.target.closest('[data-type="lock"]');
    const addButton = event.target.closest('[data-type="add"]');
+   const removeButton = event.target.closest('[data-type="remove"]');
    const columnTitle = event.target.closest('.column__title');
 
-   if (addButton || columnTitle || lockButton) return;
+   if (addButton || columnTitle || lockButton || removeButton) return;
 
    if (event) setRandomColors();
 
@@ -24,6 +25,7 @@ document.addEventListener('touchstart', event => {
 document.addEventListener('click', event => {
    const lockButton = event.target.closest('[data-type="lock"]');
    const addButton = event.target.closest('[data-type="add"]');
+   const removeButton = event.target.closest('[data-type="remove"]');
    const columnTitle = event.target.closest('.column__title');
 
    if (lockButton) {
@@ -32,6 +34,11 @@ document.addEventListener('click', event => {
 
    } else if (addButton) {
       addNewColumn();
+
+   } else if (removeButton) {
+      const column = removeButton.closest('.column');
+      
+      removeColumn(column);
 
    } else if (columnTitle) {
       copyToClickboard(event.target.textContent)
@@ -88,9 +95,18 @@ function addNewColumn() {
          <button data-type="add" class="column__button">
             <i class="fa-solid fa-plus"></i>
          </button>
+         <button data-type="remove" class="column__button">
+            <i class="fa-solid fa-minus"></i>
+         </button>
       </div>
    </div>
       `);
 }
+
+
+function removeColumn(column) {
+   column.remove();
+}
+
 
 setRandomColors();
