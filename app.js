@@ -13,9 +13,10 @@ document.addEventListener('touchstart', event => {
    const lockButton = event.target.closest('[data-type="lock"]');
    const addButton = event.target.closest('[data-type="add"]');
    const removeButton = event.target.closest('[data-type="remove"]');
+   const moveButton = event.target.closest('[data-type="move"]');
    const columnTitle = event.target.closest('.column__title');
 
-   if (addButton || columnTitle || lockButton || removeButton) return;
+   if (addButton || columnTitle || lockButton || removeButton || moveButton) return;
 
    if (event) setRandomColors();
 
@@ -37,7 +38,6 @@ document.addEventListener('click', event => {
 
    } else if (removeButton) {
       const column = removeButton.closest('.column');
-
       removeColumn(column);
 
    } else if (columnTitle) {
@@ -110,5 +110,12 @@ function removeColumn(column) {
    column.remove();
 }
 
+/* Draggable  */
+const draggabelArea = document.querySelector('body');
 
+new Sortable(draggabelArea, {
+   handle: '.handle', // handle's class
+   animation: 200
+});
+/* -------------- */
 setRandomColors();
