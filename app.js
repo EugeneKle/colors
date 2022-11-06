@@ -89,7 +89,7 @@ function addNewColumn() {
 
    document.body.insertAdjacentHTML('beforeend', `
       <div class="column" style="background-color: ${color};">
-      <h2 class="column__title">${color}</h2>
+      <h2 class="column__title" style="color:${luminance > 0.5 ? 'black' : 'white'}">${color}</h2>
       <div class="column__buttons">
          <button data-type="lock" class="column__button">
             <i class="fa-solid fa-lock-open" style="color:${luminance > 0.5 ? 'black' : 'white'}"></i>
