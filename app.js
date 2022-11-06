@@ -8,6 +8,18 @@ document.addEventListener('keydown', event => {
 
 });
 
+/* Mobile events */
+document.addEventListener('touchstart', event => {
+   const lockButton = event.target.closest('[data-type="lock"]');
+   const addButton = event.target.closest('[data-type="add"]');
+   const columnTitle = event.target.closest('.column__title');
+
+   if (addButton || columnTitle || lockButton) return;
+
+   if (event) setRandomColors();
+
+});
+/* ------------ */
 
 document.addEventListener('click', event => {
    const lockButton = event.target.closest('[data-type="lock"]');
