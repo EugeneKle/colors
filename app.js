@@ -56,7 +56,7 @@ function setRandomColors() {
       const columnTitle = column.querySelector('.column__title');
       const columnButtons = column.querySelectorAll('.column__button');
 
-      const isLocked = columnButtons[0].firstElementChild.classList.contains('fa-lock');
+      const isLocked = columnButtons[1].firstElementChild.classList.contains('fa-lock');
 
       if (isLocked) return;
       columnTitle.textContent = color;
