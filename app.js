@@ -37,7 +37,7 @@ document.addEventListener('click', event => {
 
    } else if (removeButton) {
       const column = removeButton.closest('.column');
-      
+
       removeColumn(column);
 
    } else if (columnTitle) {
@@ -85,18 +85,20 @@ function copyToClickboard(text) {
 
 function addNewColumn() {
    const color = chroma.random();
+   const luminance = chroma(color).luminance();
+
    document.body.insertAdjacentHTML('beforeend', `
       <div class="column" style="background-color: ${color};">
       <h2 class="column__title">${color}</h2>
       <div class="column__buttons">
          <button data-type="lock" class="column__button">
-            <i class="fa-solid fa-lock-open"></i>
+            <i class="fa-solid fa-lock-open" style="color:${luminance > 0.5 ? 'black' : 'white'}"></i>
          </button>
          <button data-type="add" class="column__button">
-            <i class="fa-solid fa-plus"></i>
+            <i class="fa-solid fa-plus" style="color:${luminance > 0.5 ? 'black' : 'white'}"></i>
          </button>
          <button data-type="remove" class="column__button">
-            <i class="fa-solid fa-minus"></i>
+            <i class="fa-solid fa-minus" style="color:${luminance > 0.5 ? 'black' : 'white'}"></i>
          </button>
       </div>
    </div>
