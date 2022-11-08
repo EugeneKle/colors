@@ -61,10 +61,10 @@ body {
    body {
       flex-direction: column;
    }
-   .hint__desktop {
+   .hint-modal__desktop {
       display: none;
    }
-   .hint__mobile {
+   .hint-modal__mobile {
       display: flex;
    }
    .column {
