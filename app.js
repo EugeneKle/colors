@@ -3,6 +3,8 @@ document.addEventListener('keydown', event => {
    if (event.code === 'Space') {
       event.preventDefault();
 
+      document.querySelector('.hint-modal').classList.add('hint-modal_hidden');
+
       setRandomColors();
    }
 
@@ -15,6 +17,9 @@ document.addEventListener('touchstart', event => {
    const removeButton = event.target.closest('[data-type="remove"]');
    const moveButton = event.target.closest('[data-type="move"]');
    const columnTitle = event.target.closest('.column__title');
+   const hint = event.target.closest('.hint-modal__button');
+
+   if (hint) document.querySelector('.hint-modal').classList.add('hint-modal_hidden');
 
    if (addButton || columnTitle || lockButton || removeButton || moveButton) return;
 
@@ -28,6 +33,9 @@ document.addEventListener('click', event => {
    const addButton = event.target.closest('[data-type="add"]');
    const removeButton = event.target.closest('[data-type="remove"]');
    const columnTitle = event.target.closest('.column__title');
+   const hint = event.target.closest('.hint-modal__button');
+
+
 
    if (lockButton) {
       lockButton.firstElementChild.classList.toggle('fa-lock-open');
@@ -35,6 +43,10 @@ document.addEventListener('click', event => {
 
    } else if (addButton) {
       addNewColumn();
+
+   } else if (hint) {
+
+      document.querySelector('.hint-modal').classList.add('hint-modal_hidden');
 
    } else if (removeButton) {
       const column = removeButton.closest('.column');
