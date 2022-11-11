@@ -1,4 +1,4 @@
-let isModal = false;
+let isModal = true;
 
 document.addEventListener('keydown', event => {
 
@@ -26,11 +26,11 @@ document.addEventListener('touchstart', event => {
 
    if (hint) {
       document.querySelector('.hint-modal').classList.add('hint-modal_hiden');
-      isModal = true;
+      isModal = false;
    }
 
    
-   if (addButton || columnTitle || lockButton || removeButton || moveButton || !isModal) return;
+   if (addButton || columnTitle || lockButton || removeButton || moveButton || isModal) return;
 
    if (event) setRandomColors();
 
