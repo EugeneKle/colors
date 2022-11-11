@@ -20,15 +20,15 @@ document.addEventListener('touchstart', event => {
    const hint = event.target.closest('.hint-modal__button');
 
 
-   let isModal = false;
+   
 
    if (hint) {
       document.querySelector('.hint-modal').classList.add('hint-modal_hidden');
-      isModal = true;
+      
    }
 
    
-   if (addButton || columnTitle || lockButton || removeButton || moveButton || !isModal) return;
+   if (addButton || columnTitle || lockButton || removeButton || moveButton || hint) return;
 
    if (event) setRandomColors();
 
