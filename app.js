@@ -1,3 +1,5 @@
+let isModal = false;
+
 document.addEventListener('keydown', event => {
 
    if (event.code === 'Space') {
@@ -20,15 +22,15 @@ document.addEventListener('touchstart', event => {
    const hint = event.target.closest('.hint-modal__button');
 
 
-   
+
 
    if (hint) {
-      document.querySelector('.hint-modal').classList.add('hint-modal_hidden');
-      
+      document.querySelector('.hint-modal').classList.add('hint-modal_hiden');
+      isModal = true;
    }
 
    
-   if (addButton || columnTitle || lockButton || removeButton || moveButton || hint) return;
+   if (addButton || columnTitle || lockButton || removeButton || moveButton || !isModal) return;
 
    if (event) setRandomColors();
 
