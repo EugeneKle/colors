@@ -19,9 +19,16 @@ document.addEventListener('touchstart', event => {
    const columnTitle = event.target.closest('.column__title');
    const hint = event.target.closest('.hint-modal__button');
 
-   if (hint) document.querySelector('.hint-modal').classList.add('hint-modal_hidden');
 
-   if (addButton || columnTitle || lockButton || removeButton || moveButton) return;
+   let isModal = false;
+
+   if (hint) {
+      document.querySelector('.hint-modal').classList.add('hint-modal_hidden');
+      isModal = true;
+   }
+
+   
+   if (addButton || columnTitle || lockButton || removeButton || moveButton || !isModal) return;
 
    if (event) setRandomColors();
 
