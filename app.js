@@ -58,12 +58,32 @@ document.addEventListener('click', event => {
       document.querySelector('.hint-modal').classList.add('hint-modal_hidden');
 
    } else if (removeButton) {
-      const column = removeButton.closest('.column');
-      const columns = document.querySelectorAll('.column');
-
-      if (columns.length === 1) return;
-
+      const column = removeButton.closest('.column');      
       removeColumn(column);
+
+      const columns = document.querySelectorAll('.column');
+   
+      if (columns.length === 0) {
+            document.body.insertAdjacentHTML("beforeend", `
+            <div class="column" style="background-color: #ffffff;">
+            <h2 class="column__title" style="color: black;">#ffffff</h2>
+            <div class="column__buttons">
+               <button data-type="move" class="column__button handle" style="color: black;">
+                  <i class="fa-solid fa-maximize"></i>
+               </button>
+               <button data-type="lock" class="column__button" style="color: black;">
+                  <i class="fa-solid fa-lock-open"></i>
+               </button>
+               <button data-type="add" class="column__button" style="color: black;">
+                  <i class="fa-solid fa-plus"></i>
+               </button>
+               <button data-type="remove" class="column__button" style="color: black;">
+                  <i class="fa-solid fa-minus"></i>
+               </button>
+            </div>
+         </div>
+            `);
+      }
 
    } else if (columnTitle) {
       copyToClickboard(event.target.textContent)
@@ -126,7 +146,7 @@ function addNewColumn() {
          <button data-type="add" class="column__button" style="color:${textColor};">
             <i class="fa-solid fa-plus"></i>
          </button>
-         <button data-type="remove" class="column__button style="color:${textColor};">
+         <button data-type="remove" class="column__button" style="color:${textColor};">
             <i class="fa-solid fa-minus"></i>
          </button>
       </div>
