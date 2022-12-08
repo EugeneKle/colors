@@ -59,6 +59,9 @@ document.addEventListener('click', event => {
 
    } else if (removeButton) {
       const column = removeButton.closest('.column');
+
+      if (column.length < 2) return;
+      
       removeColumn(column);
 
    } else if (columnTitle) {
