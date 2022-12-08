@@ -59,11 +59,11 @@ document.addEventListener('click', event => {
 
    } else if (removeButton) {
       const column = removeButton.closest('.column');      
-      removeColumn(column);
-
       const columns = document.querySelectorAll('.column');
    
       if (columns.length === 1) return;
+
+      removeColumn(column);
 
    } else if (columnTitle) {
       copyToClickboard(event.target.textContent)
