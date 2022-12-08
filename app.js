@@ -63,7 +63,7 @@ document.addEventListener('click', event => {
 
       const columns = document.querySelectorAll('.column');
    
-      if (columns.length === 0) return;
+      if (columns.length === 1) return;
 
    } else if (columnTitle) {
       copyToClickboard(event.target.textContent)
