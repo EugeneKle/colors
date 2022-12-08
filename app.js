@@ -59,7 +59,7 @@ document.addEventListener('click', event => {
 
    } else if (removeButton) {
       const column = removeButton.closest('.column');
-      const columns = querySelectorAll('.column');
+      const columns = document.querySelectorAll('.column');
 
       if (columns.length === 1) return;
 
