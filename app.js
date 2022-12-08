@@ -63,27 +63,7 @@ document.addEventListener('click', event => {
 
       const columns = document.querySelectorAll('.column');
    
-      if (columns.length === 0) {
-            document.body.insertAdjacentHTML("beforeend", `
-            <div class="column" style="background-color: #ffffff;">
-            <h2 class="column__title" style="color: black;">#ffffff</h2>
-            <div class="column__buttons">
-               <button data-type="move" class="column__button handle" style="color: black;">
-                  <i class="fa-solid fa-maximize"></i>
-               </button>
-               <button data-type="lock" class="column__button" style="color: black;">
-                  <i class="fa-solid fa-lock-open"></i>
-               </button>
-               <button data-type="add" class="column__button" style="color: black;">
-                  <i class="fa-solid fa-plus"></i>
-               </button>
-               <button data-type="remove" class="column__button" style="color: black;">
-                  <i class="fa-solid fa-minus"></i>
-               </button>
-            </div>
-         </div>
-            `);
-      }
+      if (columns.length === 0) return;
 
    } else if (columnTitle) {
       copyToClickboard(event.target.textContent)
